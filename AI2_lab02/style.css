@@ -1,0 +1,194 @@
+:root{
+    --matrix-green: #00ff41;
+    --matrix-dim: rgba(0,255,65,0.12);
+    --bg: #0b0b0b;
+    --text-color: #dfffe6;
+
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text-color);
+    font-family: "Courier New", Consolas, Menlo, Monaco, monospace;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+            repeating-linear-gradient(90deg,
+            rgba(0,255,65,0.08) 0 1px,
+            transparent 1px 6px),
+            repeating-linear-gradient(180deg,
+            rgba(0,255,65,0.14) 0 2px,
+            transparent 2px 10px);
+    filter: blur(0.3px);
+    animation: rain 28s linear infinite;
+    opacity: .7;
+    mix-blend-mode: screen;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            rgba(0, 0, 0, 0.5) 55%,
+            rgba(0, 0, 0, 0.85) 80%,
+            rgba(0, 0, 0, 1) 100%
+    );
+    z-index: 0;
+}
+
+@keyframes rain {
+    from { background-position: 0 -100vh, 0 0; }
+    to   { background-position: 0 100vh, 0 400px; }
+}
+
+h1, h2, h3, p, li, header, footer, .inside-container, .list {
+    position: relative;
+    z-index: 2;
+}
+
+header, footer { text-align: center; margin: 20px; }
+
+h1, h2, h3 {
+    text-align: center;
+    color: var(--matrix-green);
+    text-shadow: 0 0 8px rgba(0,255,65,0.35);
+    line-height: 1.25;
+}
+
+a {
+    color: var(--matrix-green);
+    text-decoration: none;
+}
+
+h1 { font-size: clamp(36px, 6vw, 42px); }
+h2 { font-size: clamp(28px, 4.8vw, 36px); }
+h3 { font-size: clamp(22px, 4.2vw, 28px); }
+p  { font-size: clamp(20px, 4vw, 22px); }
+
+.inside-container {
+    width: 80dvw;
+    margin-top: 5%;
+    margin-inline: auto;
+    padding: 20px 24px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,255,65,0.25);
+    background: linear-gradient(180deg,
+    rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    box-shadow: 0 0 18px rgba(0,255,65,0.06) inset;
+}
+
+.task{
+    display:flex;
+    align-items: center;
+    gap:12px;
+    width:100%;
+    box-sizing:border-box;
+    padding:10px 14px;
+    border:1px solid rgba(0,255,65,.35);
+    border-radius:8px;
+    background:rgba(0,0,0,.35);
+    margin:8px 0;
+}
+
+.task_checkbox{
+    transform:scale(1.25);
+    accent-color: #00ff41;
+    margin-right: 8px;
+    flex:0 0 auto; }
+
+.task.completed [data-role="task_name"],
+.task.completed [data-role="task_date"]{
+    text-decoration: line-through;
+    opacity: .6;
+    transition: opacity .15s ease;
+}
+
+[data-role="task_name"]{
+    flex:1 1 auto;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.task [data-role="task_name"]  {
+    flex: 1 1 auto;
+    white-space: normal;        /* <-- allow wrapping  */
+    overflow: visible;
+    text-overflow: clip;        /* no ellipsis */
+    word-break: break-word;     /* long words don’t overflow */
+}
+
+[data-role="task_date"]{ flex:0 0 auto; }
+
+.task_actions{
+    display:flex;
+    gap:8px;
+    margin-left:auto;
+    flex:0 0 auto;
+}
+
+input, select, textarea, button {
+    font-family: "Courier New", Consolas, Menlo, Monaco, monospace;
+    font-size: clamp(22px, 4.2vw, 28px);
+    color: var(--text-color);
+    background: var(--bg);
+    border: 1px solid rgba(0,255,65,0.25);
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(0,255,65,0.1) inset;
+
+}
+
+span{
+    font-size: clamp(22px, 4.2vw, 28px);
+    color: var(--text-color);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.8);
+    accent-color: #00ff41;
+    margin-right: 8px;
+}
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(12%) sepia(12%) saturate(233%) hue-rotate(74deg) brightness(103%) contrast(94%);
+    cursor: pointer;
+}
+
+.input-form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+#task_list_item[hidden] { display: none !important; }
+
+@media (orientation: portrait) {
+    .inside-container { padding: 18px; }
+}

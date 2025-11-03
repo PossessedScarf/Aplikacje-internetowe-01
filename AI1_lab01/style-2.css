@@ -111,7 +111,7 @@ p{ font-size: clamp(16px, 4vw, 20px); line-height: 1.5; }
         transform: translate(0,0);
         opacity: 1;
     }
-    8% {
+    8% {         /* x-ofset, y-ofset, blur, color */
         text-shadow: 20px 0 0 var(--glitch-violet), -2px 0 0 var(--glitch-cyan);
         transform: translate(-1px, 0);
     }

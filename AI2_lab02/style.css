@@ -113,6 +113,7 @@ p  { font-size: clamp(20px, 4vw, 22px); }
 .task_checkbox{
     transform:scale(1.25);
     accent-color: #00ff41;
+    margin-top: 14px;
     margin-right: 8px;
     flex:0 0 auto; }
 

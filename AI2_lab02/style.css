@@ -3,7 +3,6 @@
     --matrix-dim: rgba(0,255,65,0.12);
     --bg: #0b0b0b;
     --text-color: #dfffe6;
-
 }
 
 html, body {
@@ -99,7 +98,8 @@ p  { font-size: clamp(20px, 4vw, 22px); }
 
 .task{
     display:flex;
-    align-items: center;
+    align-items:flex-start;
+    flex-wrap: wrap;
     gap:12px;
     width:100%;
     box-sizing:border-box;
@@ -139,7 +139,7 @@ p  { font-size: clamp(20px, 4vw, 22px); }
     word-break: break-word;     /* long words don’t overflow */
 }
 
-[data-role="task_date"]{ flex:0 0 auto; }
+[data-role="task_date"]{ flex:0 1 auto; }
 
 .task_actions{
     display:flex;
@@ -180,11 +180,50 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.input-form{
+.input-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-top: 12px;
+}
+
+.task.editing-active [data-role="delete"][disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#search-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px 10px 48px;
+    border-radius: 4px;
+    font-family: "Courier New", Consolas, Menlo, Monaco, monospace;
+    font-size: clamp(22px, 4.2vw, 28px);
+    color: var(--text-color);
+    background: var(--bg);
+    border: 1px solid rgba(0,255,65,0.25);
+    box-shadow: 0 0 12px rgba(0,255,65,0.1) inset;
+    height: 52px;
+}
+
+#search-form::before {
+    content: "🔎︎";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6em;
+    color: var(--text-color);
+    opacity: 0.85;
+    text-shadow: 0 0 6px rgba(0,255,65,0.3);
+    pointer-events: none;
 }
 
 #task_list_item[hidden] { display: none !important; }

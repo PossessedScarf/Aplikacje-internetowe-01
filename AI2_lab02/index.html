@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>ToDo List</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Viewport for responsive design -->
     <meta id="vp" name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover">
 
@@ -17,9 +18,13 @@
     <h1>ToDo List</h1>
     </header>
 
+    <form id="search-form" class="input-form">
+        <input type="text" id="search-input" placeholder="Search tasks...">
+    </form>
+
 <form id="todo-form" class="input-form">
     <input type="text" id="todo-input" minlength="3" maxlength="255" placeholder="Enter a new task" required>
-    <input type="date" id="due-date" required>
+    <input type="date" id="due-date">
     <button type="submit">Add Task</button>
 </form>
 
@@ -43,7 +48,7 @@
         <div id="edit-form-container" class="edit-form-container" hidden>
         <form id="edit-form" class="input-form">
             <input type="text" id="edit-text-input" minlength="3" maxlength="255" placeholder="xxx" required>
-            <input type="date" id="edit-date" required>
+            <input type="date" id="edit-date">
             <button type="submit">Confirm</button>
         </form>
         </div>

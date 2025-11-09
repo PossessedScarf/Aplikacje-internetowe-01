@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>NONONO</title>
+
+    <link rel="stylesheet" href="leaflet/dist/leaflet.css" />
+    <script src="LF/dist/leaflet.js"></script>
+    <script src="LF/Plugins/leaflet-providers.js"></script>
+    <script src="LF/Plugins/leaflet-image.js"></script>
+    <style>
+        #map {
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        #rasterMap {
+            width: 300px;
+            height: 150px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<button id="getLocation">Get Current Location</button>
+<button id="saveButton">Save Raster Map</button>
+<br>
+
+<canvas id="rasterMap"></canvas>
+
+<script>
+    let map = L.map('map').setView([53.430127, 14.564802], 13);
+
+    L.tileLayer.provider('Esri.WorldImagery').addTo(map);
+    let marker = L.marker([53.430127, 14.564802]).addTo(map);
+    marker.bindPopup("<strong>Hello!</strong><br>This is a popup.");
+
+    document.getElementById("saveButton").addEventListener("click", function() {
+        leafletImage(map, function (err, canvas) {
+
+            let rasterMap = document.getElementById("rasterMap");
+            let rasterContext = rasterMap.getContext("2d");
+
+            rasterContext.drawImage(canvas, 0, 0, 300, 150);
+        });
+    });
+
+    document.getElementById("getLocation").addEventListener("click", function(event) {
+        if (! navigator.geolocation) {
+            console.log("No geolocation.");
+        }
+
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position);
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+
+            map.setView([lat, lon]);
+        }, positionError => {
+            console.error(positionError);
+        });
+    });
+</script>
+</body>
+</html>

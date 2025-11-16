@@ -2,67 +2,46 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>NONONO</title>
+    <title>Map puzzles</title>
 
-    <link rel="stylesheet" href="leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="LF/dist/leaflet.css" />
     <script src="LF/dist/leaflet.js"></script>
     <script src="LF/Plugins/leaflet-providers.js"></script>
     <script src="LF/Plugins/leaflet-image.js"></script>
-    <style>
-        #map {
-            width: 600px;
-            height: 300px;
-            border: 1px solid black;
-        }
 
-        #rasterMap {
-            width: 300px;
-            height: 150px;
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
 </head>
 <body>
-<div id="map"></div>
 
-<button id="getLocation">Get Current Location</button>
-<button id="saveButton">Save Raster Map</button>
+<div class="mapRow">
+    <div id="map"></div>
+    <canvas id="rasterMap" width="512" height="512"></canvas>
+    <div id="targetContainer" hidden>
+        <div id="targetX" class="drag-target" hidden></div>
+    </div>
+</div>
+
+<div class="buttonRow">
+<button id="getLocation">Moja lokalizacja</button>
+<button id="saveButton">Pobierz mapę</button>
+    <select name="size" id="size">
+        <option value="2">2</option>
+        <option value="4">4</option>
+        <option value="16">16</option>
+        <option value="32">32</option>
+    </select>
+<button id="puzzleButton" disabled>Zacznij puzzle</button>
+</div>
 <br>
 
-<canvas id="rasterMap"></canvas>
+<div class="puzzleRow">
+<div id="puzzleContainer">
+<canvas id="canvasX" class="item" width="512" height="512" draggable="true" hidden></canvas>
+</div>
+<div id="targetDropoff" class="drag-target" hidden></div>
+</div>
 
-<script>
-    let map = L.map('map').setView([53.430127, 14.564802], 13);
-
-    L.tileLayer.provider('Esri.WorldImagery').addTo(map);
-    let marker = L.marker([53.430127, 14.564802]).addTo(map);
-    marker.bindPopup("<strong>Hello!</strong><br>This is a popup.");
-
-    document.getElementById("saveButton").addEventListener("click", function() {
-        leafletImage(map, function (err, canvas) {
-
-            let rasterMap = document.getElementById("rasterMap");
-            let rasterContext = rasterMap.getContext("2d");
-
-            rasterContext.drawImage(canvas, 0, 0, 300, 150);
-        });
-    });
-
-    document.getElementById("getLocation").addEventListener("click", function(event) {
-        if (! navigator.geolocation) {
-            console.log("No geolocation.");
-        }
-
-        navigator.geolocation.getCurrentPosition(position => {
-            console.log(position);
-            let lat = position.coords.latitude;
-            let lon = position.coords.longitude;
-
-            map.setView([lat, lon]);
-        }, positionError => {
-            console.error(positionError);
-        });
-    });
-</script>
 </body>
 </html>

@@ -1,0 +1,303 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: system-ui, sans-serif;
+    background: linear-gradient(135deg, #ffc512, #003366);
+    color: black;
+}
+
+.inside-container {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 900px;
+    padding: 24px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.35),
+            inset 0 0 30px rgba(255, 255, 255, 0.05);
+
+    transition: 0.25s ease;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 0.08em;
+}
+
+
+.input-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 260px;
+}
+
+#city-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #e5e7eb;
+    outline: none;
+    box-shadow:
+            0 6px 14px rgba(0, 0, 0, 0.6),
+            inset 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+#city-input::placeholder {
+    color: rgba(226, 232, 240, 0.6);
+}
+
+#city-input:focus {
+    border-color: #38bdf8;
+    box-shadow:
+            0 0 0 1px rgba(56, 189, 248, 0.6),
+            0 10px 20px rgba(15, 118, 210, 0.5);
+}
+
+.input-form button {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(10, 80, 100, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #e5e7eb;
+    outline: none;
+    box-shadow:
+            0 6px 14px rgba(0, 0, 0, 0.6),
+            inset 0 0 10px rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+}
+
+.input-form button:hover {
+    background: #0ea5e9;
+    box-shadow: 0 8px 16px rgba(15, 118, 210, 0.4);
+    transform: translateY(-1px);
+}
+
+.suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    max-height: 260px;
+    overflow-y: auto;
+    display: none;
+    z-index: 30;
+    box-shadow:
+            0 10px 24px rgba(0, 0, 0, 0.7),
+            inset 0 0 12px rgba(255, 255, 255, 0.04);
+
+    scrollbar-color: rgba(148,163,184,0.7) transparent;
+}
+
+.suggestions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.suggestions::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+            180deg,
+            rgba(148,163,184,0.9),
+            rgba(55,65,81,0.9)
+    );
+    border-radius: 999px;
+    border: 1px solid rgba(15,23,42,0.8);
+}
+
+.suggestions::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+            180deg,
+            rgba(191,219,254,0.95),
+            rgba(75,85,99,0.95)
+    );
+}
+
+.suggestions div {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #e5e7eb;
+}
+
+.suggestions div:hover {
+    background: rgba(148, 163, 184, 0.25);
+}
+
+.suggestion-active {
+    background: rgba(180, 200, 255, 0.25) !important;
+}
+
+#weatherContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.weather-box-template {
+    min-width: 260px;
+    max-width: 620px;
+    padding: 20px 22px;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.45),
+            inset 0 0 15px rgba(255, 255, 255, 0.06);
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 12px;
+    grid-row-gap: 4px;
+    align-items: center;
+}
+
+.weather-box-template [data-role="iconsContainer"] {
+    grid-row: 1 / span 4;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-box-template [data-role="iconsContainer"] img {
+    width: 82px;
+    height: 82px;
+}
+
+.weather-box-template [data-role="name-text"] {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2;
+}
+
+.weather-box-template [data-role="desc-text"] {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.weather-box-template [data-role="temp-text"] {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.weather-box-template span[data-role$="-text"] {
+    font-size: 0.85rem;
+}
+
+#forecastContainer {
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.forecast-card {
+    flex: 0 0 140px;
+    padding: 12px 14px;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 2px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+            0 3px 8px rgba(0, 0, 0, 0.35),
+            inset 0 0 8px rgba(255, 255, 255, 0.04);
+
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+}
+
+.forecast-card img {
+    width: 60px;
+    height: 60px;
+}
+
+.forecast-card .day {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.forecast-card .desc {
+    font-weight: 500;
+    margin-bottom: 1px;
+}
+
+.forecast-card .temp {
+    font-size: 0.95rem;
+}
+
+#forecastContainer::-webkit-scrollbar {
+    height: 6px;
+}
+#forecastContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+#forecastContainer::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 999px;
+}

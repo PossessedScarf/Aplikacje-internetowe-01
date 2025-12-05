@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Pogodynka</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script>
+
+</head>
+<body>
+
+<div class="inside-container">
+    <header>
+        <h1>Pogodynka</h1>
+    </header>
+
+    <form id="search-form" class="input-form">
+        <div class="search-wrapper">
+            <input type="text" id="city-input" placeholder="Wpisz miasto...">
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+        <button type="submit">Pogoda</button>
+    </form>
+
+    <div id="weatherContainer" class="weatherContainer"></div>
+
+    <div id="forecastContainer" class="forecastContainer"></div>
+
+    <div id="weather-box-template" class="weather-box-template" hidden>
+        <div id="iconsContainer" data-role="iconsContainer"></div>
+        <span data-role="name-text">City</span>
+        <span data-role="desc-text">Description</span>
+        <span data-role="temp-text">X.XX°C</span>
+        <span data-role="temp-feel-text">Feels like: X.XX°C</span>
+        <span data-role="clouds-text">Clouds: XXX%</span>
+        <span data-role="humidity-text">Humidity: XXX%</span>
+        <span data-role="wind-text">Wind speed: X m/s</span>
+        <span data-role="pressure-text">Pressure: X hPa</span>
+    </div>
+
+</div>
+</body>
+</html>

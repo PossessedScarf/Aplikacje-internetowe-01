@@ -149,6 +149,8 @@ window.onload = function () {
         }
 
         if (correct === puzzleAmount) {
+            //console.log("puzzle zrobione!")
+
             const targetContainer = document.getElementById("targetContainer");
 
             if (!document.getElementById("completionOverlay")) {
